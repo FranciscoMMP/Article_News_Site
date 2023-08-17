@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 40px;
+    margin: 10px;
+    border-bottom: 1px solid black;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+}
+
+nav li:hover{
+    border-bottom: 1px solid black;
+}
+
+nav h1{
+    font-family: 'Caprasimo', cursive;
+}
+
+
+footer {
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer h2{
+    font-family: 'Caprasimo', cursive;
+    font-weight: 400;
+}
+
+footer p {
+    width: 500px;
+    text-align: center;
+}
+
+.socialMedia {
+    width: 300px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.socialMedia a{
+    color: white;
+}
+
+.copyright {
+    width: 250px;
+}
