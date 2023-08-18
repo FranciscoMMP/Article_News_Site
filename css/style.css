@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+body{
+    margin: 0;
+}
+
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 40px;
+    margin: 10px;
+    border-bottom: 1px solid black; 
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+}
+
+nav li:hover{
+    border-bottom: 1px solid black;
+}
+
+nav h1{
+    font-family: 'Caprasimo', cursive;
+}
+
+main {
+    display: flex;
+    width: 500px;
+    margin: auto;
+    margin-top: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#posts-container{
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 50px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    align-items: top;
+}
+
+.resume-post{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 20px;
+}
+
+main section a p{
+    font-weight: 800;
+}
+
+.resume-post:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+footer {
+    margin: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer h2{
+    font-family: 'Caprasimo', cursive;
+    font-weight: 400;
+}
+
+footer p {
+    width: 500px;
+    text-align: center;
+}
+
+footer .social-media {
+    width: 300px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-media a{
+    color: white;
+}
+
+footer .copyright {
+    width: 250px;
+}
+
+#post {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+#post-container {
+    border-bottom: 1px solid black;
+}
+
+#user-information-container {
+    width: 500px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+#social-media-container img{
+    width: 60px;
+    margin: 10px;
+}
+
+#social-media-container img:hover{
+    cursor: pointer;
+}
+
+#user-container img {
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+#user-container p{
+    margin-top: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    resize: vertical;
+}
