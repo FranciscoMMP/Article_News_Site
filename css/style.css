@@ -1,19 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-body{
-    margin: 0;
-}
-
 *{
+    margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 5px 40px;
+    padding: 20px 40px;
     margin: 10px;
     border-bottom: 1px solid black; 
+    align-items: center;
 }
 
 nav a {
@@ -27,12 +25,27 @@ nav ul {
     gap: 30px;
 }
 
+
 nav li:hover{
     border-bottom: 1px solid black;
 }
 
 nav h1{
     font-family: 'Caprasimo', cursive;
+}
+
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+}
+
+.mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: black;
+    margin: 8px;
 }
 
 main {
@@ -44,6 +57,22 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+#main-img{
+    margin: 10px;
+}
+
+main h1{
+    margin: 15px;
+}
+
+main p{
+    margin: 15px;
+}
+
+main h2{
+    margin: 15px;
 }
 
 #posts-container{
@@ -63,11 +92,11 @@ main {
     flex-direction: column;
     text-decoration: none;
     color: black;
-    margin-bottom: 20px;
+    margin: 20px 0px;
 }
 
-main section a p{
-    font-weight: 800;
+.resume-post h4{
+    padding: 10px;
 }
 
 .resume-post:hover{
@@ -89,11 +118,13 @@ footer {
 footer h2{
     font-family: 'Caprasimo', cursive;
     font-weight: 400;
+    margin: 20px;
 }
 
 footer p {
     width: 500px;
     text-align: center;
+    margin: 20px;
 }
 
 footer .social-media {
@@ -101,6 +132,7 @@ footer .social-media {
     text-align: center;
     display: flex;
     justify-content: space-between;
+    margin: 10px;
 }
 
 .social-media a{
@@ -134,6 +166,8 @@ footer .copyright {
 #social-media-container img{
     width: 60px;
     margin: 10px;
+    border: 1px solid black;
+    border-radius: 50%;
 }
 
 #social-media-container img:hover{
@@ -154,6 +188,7 @@ form {
     display: flex;
     flex-direction: column;
     width: 300px;
+    padding: 10px;
 }
 
 form div {
@@ -163,4 +198,153 @@ form div {
 
 textarea {
     resize: vertical;
+}
+
+@media(max-width: 768px) {
+    body{
+        margin: auto;
+        overflow-x: hidden;
+    }
+
+    nav ul{
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        clip-path: circle(100px at 90% -15%);
+        transition: 1s ease-out;
+        pointer-events: none;
+    }
+
+
+    .nav.active ul {
+        clip-path: circle(1500px at 90% -15%);
+        pointer-events: all;
+    }
+
+    .nav.active button {
+        position: fixed;
+        right: 50px;
+    }
+
+    nav li a{
+        margin-left: 0;
+        opacity: 0;
+    }
+
+    .nav.active li a {
+        font-size: 28px;
+        opacity: 1;
+    }
+
+    .mobile-menu {
+        display: block;
+        z-index: 1;
+    }
+    
+    main {
+        display: flex;
+        width: 400px;
+        margin: auto;
+        margin-top: 50px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    #main-img {
+        width: 400px;
+        height: 300px;
+    }
+
+    main p{
+        font-size: 24px;
+    }
+
+    main h2{
+        font-size: 32px;
+    }
+
+    #posts-container {
+        width: 350px;
+        border: none;
+        border-top: 1px solid black;
+        justify-content: center;
+    }
+
+    .resume-post{
+        width: 300px;
+    }
+    .resume-post img{
+        text-align: center;
+    }
+
+    .resume-post h4{
+        font-size: 24px;
+    }
+
+    footer{
+        width: 100%;
+    }
+
+    footer h2{
+        font-size: 30px;
+    }
+
+    footer p{
+        font-size: 20px;
+    }
+
+    .social-media{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .social-media a{
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    #post {
+        width: 400px;
+    }
+
+    #post-container {
+        width: 400px;
+    }
+
+    #post-container img{
+        width: 400px;
+        height: 300px;
+    }
+
+    #user-information-container {
+        width: 400px;
+    }
+
+    #comment-form {
+        width: 400px;
+    }
+
+    label {
+        font-size: 20px;
+    }
+
+    input {
+        height: 40px;
+    }
+
+    textarea{
+        height: 70px;
+    }
+
+    h4{
+        font-size: 26px;
+    }
 }

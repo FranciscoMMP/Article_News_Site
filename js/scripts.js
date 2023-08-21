@@ -45,6 +45,13 @@ var commentsContainer = document.querySelector("#comments-container");
 var commentForm = document.querySelector("#comment-form");
 var emailInput = document.querySelector("#email");
 var bodyInput = document.querySelector("#body");
+var mobileMenu = document.querySelector(".mobile-menu");
+var nav = document.querySelector(".nav");
+if (mobileMenu && nav) {
+    mobileMenu.addEventListener("click", function () {
+        nav.classList.toggle("active");
+    });
+}
 // Get id from URL
 var urlSearchParams = new URLSearchParams(window.location.search);
 var postId = urlSearchParams.get("id");
@@ -77,6 +84,7 @@ function getAllPosts() {
         });
     });
 }
+// Redirect to individual page of the post
 function openPost(postId) {
     window.location.href = "/post.html?id=".concat(postId);
 }
@@ -133,12 +141,14 @@ function getPost(id) {
         });
     });
 }
+//Redirect to social network of the author of the post
 function openFacebook(userId) {
     window.open("https://facebook.com/".concat(userId), "_blank");
 }
 function openTwitter(userId) {
     window.open("https://twitter.com/".concat(userId), "_blank");
 }
+//Create comments on the post
 function createComment(comment) {
     var div = document.createElement("div");
     var email = document.createElement("h4");
@@ -149,6 +159,7 @@ function createComment(comment) {
     div.appendChild(commentBody);
     commentsContainer === null || commentsContainer === void 0 ? void 0 : commentsContainer.appendChild(div);
 }
+//Create your own comment on the post
 function postComment(comment) {
     return __awaiter(this, void 0, void 0, function () {
         var response, data;

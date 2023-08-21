@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nordic Chapter</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+       <script src="js/scripts.js" defer></script>
 </head>
 <body>
-    <nav>
+    <nav class="nav">
         <a href="index.html"><h1>Nordic Chapter</h1></a>
+        <button class="mobile-menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </button>
         <ul>
             <li><a href="#">Blogs</a></li>
             <li><a href="#">About</a></li>
@@ -17,46 +23,23 @@
         </ul>
     </nav>
     <main>
-        <img src="https://picsum.photos/id/43/650/300" alt="">
+        <img id="main-img" src="https://picsum.photos/id/43/650/300" alt="">
         <h1>A few words about this blog platform, Ghost, and how this site was made</h1>
         <p>Why Ghost (& Figma) instead of Medium, WordPress or other options?</p>
         <h2>All articles</h2>
-        <section>
-            <a href="#">
-                <img src="https://picsum.photos/id/28/200/150" alt="">
-                <p>Here are some things you should know regardin how we work</p>
-            </a>
-            <a href="#">
-                <img src="https://picsum.photos/id/258/200/150" alt="">
-                <p>Granny gives everyone the finger, and other tips from OFFF Barcelona</p>
-            </a>
-            <a href="#">
-                <img src="https://picsum.photos/id/354/200/150" alt="">
-                <p>Hello world, or, in other words, why this blog exists</p>
-            </a>
-            <a href="#">
-                <img src="https://picsum.photos/id/176/200/150" alt="">
-                <p>Connecting artificial intelligence with digital product design</p>
-            </a>
-            <a href="#">
-                <img src="https://picsum.photos/id/213/200/150" alt="">
-                <p>I believe learning is the most important skill</p>
-            </a>
-            <a href="#">
-                <img src="https://picsum.photos/id/323/200/150" alt="">
-                <p>Updating list of 50+ sources on distributed teams, remote work, and how to make it all work better</p>
-            </a>
-        </section>
+        <div id="posts-container">
+
+        </div>
     </main>
     <footer>
         <h2>Nordic Chapter</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu velit tempus erat egestas efficitur. In hac habitasse platea dictumst. Fusce a nunc eget ligula suscipit finibus.</p>
-        <div class="socialMedia">
+        <div class="social-media">
         <a href="https://twitter.com/home" target="_blank">Twitter</a>
         <a href="https://br.linkedin.com" target="_blank">Linkedin</a>
         <a href="#">RSS</a>
         </div>
-        <p class="copyright">&copy; 2012-2020 Nordic Rose Co. All Rights Reserved.</p>
+        <p class="copyright">&copy; 2012-2023 Nordic Rose Co. All Rights Reserved.</p>
     </footer>
 </body>
 </html>

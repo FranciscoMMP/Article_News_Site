@@ -13,6 +13,14 @@ const commentForm: HTMLFormElement | null = document.querySelector("#comment-for
 const emailInput: HTMLInputElement | null = document.querySelector("#email");
 const bodyInput: HTMLInputElement | null = document.querySelector("#body");
 
+const mobileMenu: HTMLElement | null = document.querySelector(".mobile-menu");
+const nav: HTMLElement | null = document.querySelector(".nav");
+if (mobileMenu && nav) {
+    mobileMenu.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+  }
+
 // Get id from URL
 const urlSearchParams: URLSearchParams = new URLSearchParams(window.location.search);
 const postId: string | null = urlSearchParams.get("id");
@@ -39,6 +47,7 @@ async function getAllPosts(): Promise<void> {
     });
 }
 
+// Redirect to individual page of the post
 function openPost(postId: number): void {
     window.location.href = `/post.html?id=${postId}`;
 }
@@ -86,6 +95,7 @@ async function getPost(id: number): Promise<void> {
     });
 }
 
+//Redirect to social network of the author of the post
 function openFacebook(userId: number): void {
     window.open(`https://facebook.com/${userId}`, "_blank");
 }
@@ -94,6 +104,7 @@ function openTwitter(userId: number): void {
     window.open(`https://twitter.com/${userId}`, "_blank");
 }
 
+//Create comments on the post
 function createComment(comment: any): void {
     const div: HTMLDivElement = document.createElement("div");
     const email: HTMLHeadingElement = document.createElement("h4");
@@ -108,6 +119,7 @@ function createComment(comment: any): void {
     commentsContainer?.appendChild(div);
 }
 
+//Create your own comment on the post
 async function postComment(comment: string): Promise<void> {
     const response: Response = await fetch(`${url}/${postId}/comments`, {
         method: "POST",
@@ -141,3 +153,4 @@ if (!postId) {
         });
     }
 }
+
