@@ -34,17 +34,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+// url of APIs
 var url = "https://jsonplaceholder.typicode.com/posts";
 var urlUsers = "https://dummyjson.com/users";
+//Elements of initial page
 var postsContainer = document.querySelector("#posts-container");
+var paginationContainer = document.querySelector("#pagination-container");
+//Elements of pagination
+var postsPerPage = 6;
+var currentPage = 1;
+//Elements of individual post page
 var postPage = document.querySelector("#post");
 var postContainer = document.querySelector("#post-container");
 var userContainer = document.querySelector("#user-container");
 var socialMediaContainer = document.querySelector("#social-media-container");
 var commentsContainer = document.querySelector("#comments-container");
+//Elements of comments on the post page
 var commentForm = document.querySelector("#comment-form");
 var emailInput = document.querySelector("#email");
 var bodyInput = document.querySelector("#body");
+//Elements of responsiviness
 var mobileMenu = document.querySelector(".mobile-menu");
 var nav = document.querySelector(".nav");
 if (mobileMenu && nav) {
@@ -52,13 +61,14 @@ if (mobileMenu && nav) {
         nav.classList.toggle("active");
     });
 }
+var mainTitle = document.querySelector("#main-title");
 // Get id from URL
 var urlSearchParams = new URLSearchParams(window.location.search);
 var postId = urlSearchParams.get("id");
 // Get all articles
 function getAllPosts() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data;
+        var response, data, startIndex, endIndex;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, fetch(url)];
@@ -67,28 +77,91 @@ function getAllPosts() {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     data = _a.sent();
-                    data.map(function (post) {
+                    startIndex = (currentPage - 1) * postsPerPage;
+                    endIndex = startIndex + postsPerPage;
+                    //Clears the information of the past page
+                    if (postsContainer !== null)
+                        postsContainer.innerHTML = '';
+                    //Update the page with your respective posts
+                    data.slice(startIndex, endIndex).map(function (post) {
+                        //Assigns the HTML elements to the variables
                         var div = document.createElement("div");
                         var title = document.createElement("h4");
                         var img = document.createElement("img");
+                        //Assigns the variables with datas to the variables of HTML elements
                         div.classList.add("resume-post");
                         title.innerText = post.title;
                         img.setAttribute("src", "https://picsum.photos/id/".concat(post.id, "/250/200"));
+                        //Add the informations of post to the div
                         div.setAttribute("onclick", "openPost(".concat(post.id, ")"));
                         div.appendChild(img);
                         div.appendChild(title);
+                        //Add the post on the page
                         postsContainer === null || postsContainer === void 0 ? void 0 : postsContainer.appendChild(div);
                     });
+                    //Update the pagination buttons of the page with your respective number
+                    updatePagination(data.length);
                     return [2 /*return*/];
             }
         });
     });
 }
-// Redirect to individual page of the post
+//Add buttons for pagination
+function updatePagination(totalPosts) {
+    //Define the total of pages
+    var totalPages = Math.ceil(totalPosts / postsPerPage);
+    //Clears the information of buttons of the past page
+    if (paginationContainer !== null)
+        paginationContainer.innerHTML = '';
+    //Add the button of previous page
+    var prevButton = createPageButton("Previous", currentPage > 1 ? currentPage - 1 : null);
+    prevButton.classList.add("prev-button");
+    paginationContainer === null || paginationContainer === void 0 ? void 0 : paginationContainer.appendChild(prevButton);
+    //Define the visibility of the button based on the actual page
+    if (currentPage == 1) {
+        prevButton.classList.add("hidden");
+    }
+    // Add the button with the number of actual page
+    var currentPageLink = createPageButton(currentPage.toString(), null);
+    currentPageLink.classList.add("current-page");
+    paginationContainer === null || paginationContainer === void 0 ? void 0 : paginationContainer.appendChild(currentPageLink);
+    // Add the button of next page
+    var nextButton = createPageButton("Next", currentPage < totalPages ? currentPage + 1 : null);
+    nextButton.classList.add("next-button");
+    paginationContainer === null || paginationContainer === void 0 ? void 0 : paginationContainer.appendChild(nextButton);
+    //Define the visibility of the button based on the actual page
+    if (currentPage == totalPages) {
+        nextButton.classList.add("hidden");
+    }
+}
+//Create button for container of the pagination
+function createPageButton(definition, targetPage) {
+    var pageButton = document.createElement("span");
+    pageButton.innerText = definition;
+    pageButton.classList.add("page-link");
+    //Determines if the button will be active or not based on the actual page
+    if (targetPage === null) {
+        pageButton.classList.add("disabled");
+    }
+    else {
+        //Function to change the posts shown on the page by clicking the button
+        pageButton.addEventListener("click", function () {
+            //Assigns the number of the desire page to the variable currentPage
+            currentPage = targetPage;
+            getAllPosts();
+        });
+        //Function to change the view of the page for the top of the main section
+        pageButton.addEventListener("click", function () {
+            mainTitle === null || mainTitle === void 0 ? void 0 : mainTitle.scrollIntoView();
+        });
+    }
+    return pageButton;
+}
+//Redirect to individual page of the post
 function openPost(postId) {
     window.location.href = "/post.html?id=".concat(postId);
 }
-// Get individual article
+//Get individual post
 function getPost(id) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, responsePost, responseComments, responseUsers, dataPost, dataComments, dataUsers, title, postImg, body, author, authorPic, facebook, twitter;
@@ -117,6 +190,7 @@ function getPost(id) {
                     authorPic = document.createElement("img");
                     facebook = document.createElement("img");
                     twitter = document.createElement("img");
+                    //Assigns the variables with datas to the variables of HTML elements
                     title.innerText = dataPost.title;
                     postImg.setAttribute("src", "https://picsum.photos/id/".concat(dataPost.id, "/900/400"));
                     body.innerText = dataPost.body;
@@ -126,6 +200,7 @@ function getPost(id) {
                     twitter.setAttribute("src", "https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/online_social_media_twitter-512.png");
                     facebook.setAttribute("onclick", "openFacebook(".concat(dataUsers.id, ")"));
                     twitter.setAttribute("onclick", "openTwitter(".concat(dataUsers.id, ")"));
+                    //Add the informations of post to the page
                     postContainer === null || postContainer === void 0 ? void 0 : postContainer.appendChild(title);
                     postContainer === null || postContainer === void 0 ? void 0 : postContainer.appendChild(postImg);
                     postContainer === null || postContainer === void 0 ? void 0 : postContainer.appendChild(body);
@@ -133,6 +208,7 @@ function getPost(id) {
                     socialMediaContainer === null || socialMediaContainer === void 0 ? void 0 : socialMediaContainer.appendChild(facebook);
                     userContainer === null || userContainer === void 0 ? void 0 : userContainer.appendChild(author);
                     userContainer === null || userContainer === void 0 ? void 0 : userContainer.appendChild(authorPic);
+                    //Add comments of the respective post in the page
                     dataComments.map(function (comment) {
                         createComment(comment);
                     });
@@ -141,22 +217,20 @@ function getPost(id) {
         });
     });
 }
-//Redirect to social network of the author of the post
-function openFacebook(userId) {
-    window.open("https://facebook.com/".concat(userId), "_blank");
-}
-function openTwitter(userId) {
-    window.open("https://twitter.com/".concat(userId), "_blank");
-}
 //Create comments on the post
 function createComment(comment) {
+    //Assigns the HTML elements to the variables
     var div = document.createElement("div");
     var email = document.createElement("h4");
     var commentBody = document.createElement("p");
+    //Assigns the information of the comment to the variables
     email.innerText = comment.email;
     commentBody.innerText = comment.body;
+    //Add the informations of comment to the div
+    div.classList.add("comment");
     div.appendChild(email);
     div.appendChild(commentBody);
+    //Add the informations of comment to the page
     commentsContainer === null || commentsContainer === void 0 ? void 0 : commentsContainer.appendChild(div);
 }
 //Create your own comment on the post
@@ -183,6 +257,14 @@ function postComment(comment) {
         });
     });
 }
+//Redirect to social network of the author of the post
+function openFacebook(userId) {
+    window.open("https://facebook.com/".concat(userId), "_blank");
+}
+function openTwitter(userId) {
+    window.open("https://twitter.com/".concat(userId), "_blank");
+}
+//Determines the function of the page
 if (!postId) {
     getAllPosts();
 }

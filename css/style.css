@@ -53,6 +53,7 @@ main {
     width: 500px;
     margin: auto;
     margin-top: 50px;
+    margin-bottom: 30px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -72,6 +73,7 @@ main p{
 }
 
 main h2{
+    border-top: 1px solid black;
     margin: 15px;
 }
 
@@ -99,9 +101,37 @@ main h2{
     padding: 10px;
 }
 
+#pagination {
+    display: flex;
+    width: 500px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.page-link{
+    margin: 30px;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.prev-button, .next-button{
+    cursor: pointer;
+    display: inline-block;
+    width: 100px;
+}
+
 .resume-post:hover{
     text-decoration: underline;
     cursor: pointer;
+}
+
+.current-page{
+    border: 1px solid black;
+}
+
+.hidden{
+    visibility: hidden;
 }
 
 footer {
@@ -200,6 +230,11 @@ textarea {
     resize: vertical;
 }
 
+.comment {
+    border: 1px solid black;
+    margin: 5px;
+}
+
 @media(max-width: 768px) {
     body{
         margin: auto;
@@ -287,6 +322,12 @@ textarea {
 
     .resume-post h4{
         font-size: 24px;
+    }
+
+    .prev-button, .next-button{
+        font-size: 24px;
+        width: 70px;
+        justify-content: space-between;
     }
 
     footer{
